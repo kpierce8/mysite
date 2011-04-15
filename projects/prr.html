@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Running PRR</title>
+<link href="../css/master.css" media="all" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<div class="container">
+	<div class="header">
+		<h1 id="home"><a href="../index.html">Kenneth B. Pierce Jr. PhD</a></h1>
+		<div class="search-form">
+			<input name="Text1" type="text" /> </div>
+		<div class="primary-nav">
+			<ul class="primaryNavList">
+				<li><a href="../about.html">About me</a></li>
+				<li><a href="../wikiproj/doku.php">Proj Wiki</a></li>
+				<li><a href="index.html">Projects</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="content">
+		<div class="section-nav">
+			<ul id="projects">
+				<li><a href="hydrodiff.html">Hydrodiff</a></li>
+				<li><a href="rapidAAViewer.html">Rapid AA Viewer</a></li>
+				<li><a href="hydroGradient.html">hydroGradient</a></li>
+				<li><a href="prr.html">Potential Relative Radiation (PRR)</a></li>
+			</ul>
+		</div>
+		<div class="theBody">
+			<p>This is the webpage for calculating Potential Relative Radiation 
+			(PRR) as outlined in <a href="prr/pierce2005.pdf">Pierce 2005</a>.</p>
+			<p>Pierce, K. B., T. Lookingbill, and D. Urban. 2005. A simple method 
+			for estimating potential relative radiation (PRR) for landscape-scale 
+			vegetation analysis. Landscape Ecology <b>20</b>:137-147.<o:p></o:p></p>
+			<link href="prr/prr_files/filelist.xml" rel="File-List">
+			<p>The amls accompanying this site were originally written by Andy Bunn 
+			and have been further modified with the assistance of Matthew Gregory.</p>
+			<h2>How to run PRR for a study site.</h2>
+			<p>The basic premise of running PRR is simply to obtain a DEM and the 
+			times for which you want to calculate relative insolation. In my original 
+			study, the maps were for medium sized watersheds (several hundred hectares) 
+			so in each case I used a single latitude. For a more recent study doing 
+			statewide regions we used the north and south latitude and merged the 
+			two files as a weighted mean (1.0 for the northerly latitude and 0.0 
+			for the southerly at the northern end, 0.5 of each in the middle, etc.). 
+			For non-regional studies a single latitude is probably fine. In both 
+			cases we were interested in the cumulative relative potential radiation 
+			load over the course of a year so we used the day with the mean solar 
+			period for each month during a prescribed “growing season” with hourly 
+			grids during each day. For example over a 6 mos period we might calculate 
+			~72 grids (assuming 12 hrs with positive solar angles for six different 
+			months).&nbsp;&nbsp; </p>
+			<p>The steps are these.&nbsp; </p>
+			<p>1) Decide upon a resolution of data. For plant-relevant environments 
+			growing season may be the best indicator. In that case you would select 
+			the months you want and the day each month with the mean solar period.
+			</p>
+			<p>Mean solar period is on: (I think this is constant everywhere)
+			</p>
+			<p>Jan 17, Feb 15, Mar 16, Apr 15, May 15, Jun 11, </p>
+			<p>Jul 17, Aug 16, Sep 16, Oct 16, Nov 15, Dec 11</p>
+			<p>Possible solar calculators:</p>
+			<p>The first one is a privately maintained website that provides output 
+			in an excellent format for the accompanying amls. However the data could 
+			be generated from many places. Someday I might get around to providing 
+			a program to do the calculations separately. I will use this output 
+			in the example.</p>
+			<p><a href="http://www.susdesign.com/sunposition/">http://www.susdesign.com/sunposition/</a></p>
+			<p><a href="http://rredc.nrel.gov/solar/codesandalgorithms/solpos/">
+			http://rredc.nrel.gov/solar/codesandalgorithms/solpos/</a></p>
+			<p><a href="http://www.srrb.noaa.gov/highlights/sunrise/azel.html">http://www.srrb.noaa.gov/highlights/sunrise/azel.html</a></p>
+			<p>Get the solar angle and elevation for each hour of sunlight on those 
+			days.</p>
+			<p>2) Create a text file for each day that you want to calculate which 
+			looks like this</p>
+			<p>Here&#39;s a sample of the input data (date, time, altitude, azimuth):</p>
+			<p>06/21/01,445,0.21,60.33</p>
+			<p>06/21/01,500,2.84,62.55</p>
+			<p>06/21/01,515,5.53,64.71</p>
+			<p>06/21/01,530,8.26,66.82</p>
+			<p>06/21/01,545,11.03,68.88</p>
+			<p>06/21/01,600,13.84,70.91</p>
+			<p>06/21/01,615,16.69,72.91</p>
+			<p>and so on...</p>
+			<p><o:p>&nbsp;</o:p></p>
+			<p>3) Obtain a DEM for your location, preferably larger than your area 
+			to account for shading if in steeply mountainous terrain. </p>
+			<p><o:p>&nbsp;</o:p></p>
+			<p>4) For each day you will need 2 aml files, or you can do them all 
+			at once with three. The amls are</p>
+			<p><o:p>&nbsp;</o:p></p>
+			<p><a href="prr/PRRrunner.aml">PRRrunner.aml </a>&nbsp;calls each day</p>
+			<p><a href="prr/prr_f.aml">prr_f.aml&nbsp;&nbsp;&nbsp; </a>&nbsp;formats the input </p>
+			<p><a href="prr/prr_c.aml">prr_c.aml&nbsp;&nbsp;&nbsp; </a>&nbsp;does the calculations.</p>
+			<p>The PRRrunner file simply looks like this for each month you wish 
+			to calculate:</p>
+			<p><o:p>&nbsp;</o:p></p>
+			<p>&amp;r prr_f.aml textname.txt infoname.dat demname newgrid</p>
+			<p><o:p>&nbsp;</o:p></p>
+			<p>Where txtname.txt is the text file of solar altitudes and azimuths, 
+			infoname.dat is the name for the file that arc will import to (I might 
+			use march.txt and march.dat). Demname is your dem and newgrid is the 
+			name of your summed hillshades, i.e. marchprr.</p>
+			<p><o:p>&nbsp;</o:p></p>
+			<p>5) Add or average over the individual monthly grids. Your done.</p>
+		</div>
+		<div class="footer">
+		<p>Copyright © 2011 Frantic Goose Software </p>
+		<div class="footer-decoration">
+		</div>
+	</div>
+
+	</div>
+</div>
+
+</body>
+
+</html>

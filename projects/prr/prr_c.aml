@@ -1,0 +1,82 @@
+/*
+/* agb 2001
+/* prr_c.aml
+/* potential relative radiation calculation aml
+/* The goal of this aml is run hillsahde a bunch of times.
+/*
+/* When hillshade is run with the sun's position tracked over
+/* a course of time then an index of relative radation is produced
+/*
+/* This aml is designed to be run after prr_f.aml although all it
+/* needs to run is a dem and files of azimuth and altitude.
+/* Those must be name az.dat and alt.dat respectively.
+/*
+/* Note that this aml is for use by me and developers of the
+/* prr index - Ken Peirce and crew at Duke University.
+/*
+/* Modified very slightly by Matt Gregory, Oregon State Univesity, 10.25.2002
+
+/* &sv dem = [response 'Name of dem' dem]
+/* &sv prr_grid = [response 'Name of prr grid (prr_grid)' prr_grid]
+
+&args dem prr_grid
+
+&s az_open = [open az.dat openstat -r]
+&s alt_open = [open alt.dat openstat -r]
+
+grid
+
+&sv flag = .true.
+&sv count = 1
+
+&do &while %flag% = .true.
+  &sv az = [read %az_open% azreadstat]
+  &sv alt = [read %alt_open% alreadstat]
+
+  &if %azreadstat% ne 102 and %alreadstat% ne 102 &then &do
+
+    /* mjg - 10.25.2002
+    /*
+    /* Change solar angle to be referenced correctly for hillshade
+    /*
+    /* az.dat has angles measured in degrees from S, where positive values
+    /* reflect east of S and negative values reflect west of S
+    /*
+    /* The following transformation converts this value to degrees clockwise
+    /* from due north
+
+    &sv az = [calc [calc -1.0 * %az%] + 180.0]
+
+    &type Number %count%
+    &type Azimuth = %az%
+    &type Altitude = %alt%
+
+    /* Create a hillshade at this azimuth, altitude
+    hill%count% = hillshade(%dem%, %az%, %alt%)
+    &sv count = %count% + 1
+  &end
+  &else
+    &sv flag = .false.
+&end
+
+/* Build string to sum all prr values together
+&sv count = %count% - 1
+&do i = 1 &to %count%
+  &if %i% = 1 &then
+    &sv str = hill%i%
+  &else
+    &sv str = %str%, hill%i%
+&end
+
+%prr_grid% = sum(%str%)
+
+/* Delete temporary hill grids
+&do i = 1 &to %count%
+  kill hill%i% all
+&end
+
+quit
+
+&sv az_close = [close %az_open%]
+&sv alt_close = [close %alt_open%]
+&return
