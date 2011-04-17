@@ -4,258 +4,242 @@ CSS author: Your name
 Updated:	Date here
 Updated by: Date here
 ----------------------------------- */
-
 /* -----------------------------------
 simple reset
 ----------------------------------- */
-
-html, body, ul, ol, li, form, fieldset, legend
-{
+html, body, ul, ol, li, form, fieldset, legend {
 	margin: 0;
 	padding: 0;
 }
-
-h1, h2, h3, h4, h5, h6, p { margin-top: 0; }
-fieldset, img { border: 0; }
-legend { color: #000; }
-
-
-input, textarea, select, button
-{
+h1, h2, h3, h4, h5, h6, p {
+	margin-top: 0;
+}
+fieldset, img {
+	border: 0;
+}
+legend {
+	color: #000;
+}
+input, textarea, select, button {
 	font-size: 110%;
 	line-height: 1.1;
 	font-family: helvetica, arial, sans-serif;
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
-
-button
-{
+button {
 	width: auto;
 	overflow: visible;
 }
-
-table
-{
+table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
-caption, th, td
-{
+caption, th, td {
 	text-align: left;
 	vertical-align: top;
 	font-weight: normal;
 }
-
-li { list-style: none; }
-
-abbr, acronym
-{
+li {
+	list-style: none;
+}
+abbr, acronym {
 	border-bottom: .1em dotted;
 	cursor: help;
 }
-
-sup { vertical-align: text-top; }
-sub { vertical-align: text-bottom; }
-
-pre, code
-{
+sup {
+	vertical-align: text-top;
+}
+sub {
+	vertical-align: text-bottom;
+}
+pre, code {
 	font-family: "Courier New", monospace, serif;
 	font-size: 100%;
 	line-height: 1.2;
 }
-
 /* -----------------------------------
 elements
 ----------------------------------- */
-
-body { 
+body {
 	color: #ccc;
 	background: #fff;
 	font: 90%/1 arial, helvetica, sans-serif;
-	
 }
-h1, h2, h3, h4, h5, h6 
-{ 
+h1, h2, h3, h4, h5, h6 {
 	margin: 0 0 .5em;
 	color: #000;
-	
 }
-h1 { 	font-size: 200%; 
-		color: #55ff55;}
-h2 {font-size: 180%; }
-h3 { font-size: 160%;}
-h4 {font-size: 140%; }
-h5 { font-size: 120%;}
-h6 { font-size: 100%;}
-
-p 
-{
+h1 {
+	font-size: 200%;
+	color: #55ff55;
+}
+h2 {
+	font-size: 180%;
+}
+h3 {
+	font-size: 160%;
+}
+h4 {
+	font-size: 140%;
+}
+h5 {
+	font-size: 120%;
+}
+h6 {
+	font-size: 100%;
+}
+p {
 	padding: 1em;
 	line-height: 1.4;
 	color: #0000FF;
 }
- 
- 
 a:link {
 	color: #0f3163;
 	margin-bottom: 20px;
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
-a:visited { color: #04214b;}
-a:focus { color: #000; outline: thin dotted;}
-a:hover { color: #129911 }
-a:active { color: #f00 }
-
-.content ol { 
+a:visited {
+	color: #04214b;
+}
+a:focus {
+	color: #000;
+	outline: thin dotted;
+}
+a:hover {
+	color: #129911;
+}
+a:active {
+	color: #f00;
+}
+/*.content ol {
 	line-height: 1.4;
-	padding: 0 0 1.5em 3px;}
+	padding: 0 0 1.5em 3px;*/
+}
 .section-nav ul {
-	line-height: 1.4; 
+	line-height: 1.4;
 	padding: 0 0 1.5em 40px;
 }
-
 /* .section-nav ul li
 { 
 	padding: 0 0 0 20px;
 	background: url('images/bullet.gif') no-repeat 0 .3em;
 } */
-
 /* -----------------------------------
 layout
 ----------------------------------- */
-
-.container
-{
+.container {
 	width: 960px;
-	margin: 0, auto;
-
+	
 }
-
-#me{
+#me {
 	padding: 20px;
 	float: right;
 	margin-left: 20px;
-
 }
-
-.header
-{
+.header {
 	background: #9999FF;
-	padding:10px;
-	height:100px;
+	
+	
 }
-
-#myaddress
-{
-clear:both;
-float: left;
-width: 300px;
-background: #5555ff;
+#myaddress {
+	clear: both;
+	float: left;
+	width: 300px;
+	background: #5555ff;
 }
-
-.content
-{
+.content {
 	background: #fdc086;
 	background-color: #FFFFFF;
+	/*clear: both;*/
+}
+.theBody {
+	padding: 20px 0 0;
+	width: 580px;
+	float: left;
+}
+.sidebar {
+	float: right;
+}
+.footer {
 	clear: both;
 }
-
-
-.theBody
-{
-	padding: 20px 0 0;
-	
-	width: 580px;
-	float:left;
+#home a:visited {
+	color: black;
 }
-
-.sidebar
-{
-
-float:right;
-}
-
-
-.footer
-{
-clear: both;
-}
-
-#home a:visited { color:black;}
-
-
 /* -----------------------------------
 header
 ----------------------------------- */
-
 /* -----------------------------------
 search-form
 ----------------------------------- */
-
 /* -----------------------------------
 primary-nav
 ----------------------------------- */
-.primary-nav
-{
-	background: yellow;
+#primaryNavList {
 	width: 75%;
+	background: yellow;
+	margin: 5px;
+	padding: 0 0 20px 5px;
+	border-bottom: 1px solid #696;
+}
+#primaryNavList li {
+	margin: 0;
+	padding: 0; 
+	display: inline;
+	list-style: none;
+	color: black;
+}
+#primaryNavList a {
 	float: left;
-	margin: 10px;
-	padding:5px;
+	line-height: 14px;
+	font-weight: bold;
+	margin: 0 10px 4px 10px;
+	text-decoration: none;
+	color: #9c9;
+}
+#primaryNavList a.active, #primaryNavList a.hover {
+	border-bottom: 4px solid #696;
+	padding-bottom: 2px;
+	color: #363;
 }
 
-.primaryNavList li
-{
-	float:left;
-	text-align: center;
-	width: 20%;
-	border:medium;
-	
-	
+#primaryNavList a.hover {
+	color: #696;
 }
 
 /* -----------------------------------
 section-nav
 ----------------------------------- */
-.section-nav
-{
-width: 250px;
-float:left;
-background: yellow;
-padding: 5px;
-border:medium aqua;
-
+.section-nav {
+	width: 250px;
+	float: left;
+	background: yellow;
+	padding: 5px;
+	border: medium aqua;
 }
 .search-form {
-	float:right;
+	float: right;
 	width: 200px;
-	margin:5px;
+	margin: 5px;
 }
-
 /* -----------------------------------
 footer
 ----------------------------------- */
-
 /* -----------------------------------
 box
 ----------------------------------- */
-
 /* -----------------------------------
 colors
 ----------------------------------- */
-
 /* -----------------------------------
 classes
 ----------------------------------- */
-.structural
-{
-position: absolute;
-left: -500em;
+.structural {
+	position: absolute;
+	left: -500em;
 }
-
 .gutter {
 	margin-left: 20px;
 	margin-right: 20px;
