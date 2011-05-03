@@ -62,6 +62,7 @@ pre, code {
 elements
 ----------------------------------- */
 body {
+
 	color: #ccc;
 	background: #fff;
 	font: 90%/1 arial, helvetica, sans-serif;
@@ -154,11 +155,12 @@ layout
 	background: #fdc086;
 	background-color: #FFFFFF;
 	clear: both;
+	float:left
 }
 .theBody {
 	padding: 20px 0 0;
 	width: 580px;
-	float: left;
+	
 }
 .sidebar {
 	float: right;
@@ -166,7 +168,7 @@ layout
 .footer {
 	clear: both;
 }
-#home a:visited {
+.home a:visited {
 	color: black;
 }
 /* -----------------------------------
